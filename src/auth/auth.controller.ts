@@ -8,6 +8,8 @@ export class AuthController {
 
   @Post('login')
   async login(@Body(ValidationPipe) loginDto: LoginDto) {
-    return this.authService.login(loginDto);
+    const { access_token, user } = await this.authService.login(loginDto);
+
+    return { access_token, user };
   }
 }

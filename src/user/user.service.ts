@@ -15,7 +15,6 @@ export class UserService {
   async createUser(createUserDto: CreateUserDto): Promise<{ user: User }> {
     const { email, password } = createUserDto;
 
-    // Check if a user with the same email already exists
     const existingUser = await this.userRepository.findOne({
       where: { email },
     });
@@ -24,7 +23,6 @@ export class UserService {
       throw new ConflictException('Email address already in use');
     }
 
-    // Hash the user's password before saving it to the database
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = this.userRepository.create({
@@ -47,5 +45,9 @@ export class UserService {
     }
 
     return null;
+  }
+
+  async findById(id: number): Promise<User | undefined> {
+    return this.userRepository.findOne({ where: { id } });
   }
 }
