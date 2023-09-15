@@ -7,6 +7,7 @@ import typeOrmConfig from './typeorm.config';
 import { AuthModule } from './auth/auth.module';
 import { RideModule } from './ride/ride.module';
 import { AuthMiddlewareModule } from './auth/middlewares/auth-middleware.module';
+import { DriverModule } from './driver/driver.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AuthMiddlewareModule } from './auth/middlewares/auth-middleware.module'
     AuthModule,
     RideModule,
     AuthMiddlewareModule,
+    DriverModule,
   ],
   controllers: [],
   providers: [],
