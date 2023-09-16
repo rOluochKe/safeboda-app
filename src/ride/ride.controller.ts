@@ -15,10 +15,12 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Roles } from './decorators/role.decorator';
 import { AuthMiddleware } from '../auth/middlewares/auth.middleware';
 import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('api/v1/rides')
 @ApiTags('rides')
 @UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 export class RideController {
   constructor(private readonly rideService: RideService) {}
 

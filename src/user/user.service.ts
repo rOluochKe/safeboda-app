@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
+import { UserWithoutPassword } from '../common/common.dto';
+import { stripPasswordFromUser } from '../auth/auth.utils';
 
 @Injectable()
 export class UserService {
@@ -12,7 +14,9 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async createUser(createUserDto: CreateUserDto): Promise<{ user: User }> {
+  async createUser(
+    createUserDto: CreateUserDto,
+  ): Promise<{ user: UserWithoutPassword }> {
     const { email, password } = createUserDto;
 
     const existingUser = await this.userRepository.findOne({
@@ -31,7 +35,8 @@ export class UserService {
     });
 
     const savedUser = await this.userRepository.save(user);
-    return { user: savedUser };
+
+    return { user: stripPasswordFromUser(savedUser) };
   }
 
   async validateUser(email: string, password: string): Promise<User | null> {
