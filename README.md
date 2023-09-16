@@ -26,7 +26,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## Installation
 
-To get started, follow these steps:
+To get started, follow these steps for local installation:
 
 1. Clone the repository:
 
@@ -49,6 +49,12 @@ To get started, follow these steps:
    $ npm run start
    ```
 
+To get started, follow these steps for docker installation:
+
+1. Docker build: `docker-compose up --build`
+2. Run build Docker: `docker-compose up`
+3. Docker shutdown: `docker-compose down`
+
 ## Usage
 
 The Ride-Share application provides the following features:
@@ -62,4 +68,10 @@ The Ride-Share application provides the following features:
 
 ## API Endpoints
 
-Use the API documentation to test the application's endpoints: `http://localhost:3000/api/v1/docs#/`
+Use the API documentation to test the application's endpoints:
+
+- Using local setup: `http://localhost:3000/api/v1/docs#/`
+
+or
+
+- Using docker: `http://localhost/api/v1/docs#/`
