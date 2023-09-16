@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Ride } from '../ride/ride.entity';
 
-enum UserRole {
+export enum UserRole {
   USER = 'user',
   DRIVER = 'driver',
 }
@@ -24,4 +25,7 @@ export class User {
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
   role: UserRole;
+
+  @OneToMany(() => Ride, (ride) => ride.user)
+  rides: Ride[];
 }
